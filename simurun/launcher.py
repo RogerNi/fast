@@ -106,6 +106,8 @@ def main():
     parser.add_argument('-X', '--exploit', '--auto-exploit', action='store_true')
     parser.add_argument('-i', '--interactive', action='store_true')
     parser.add_argument('-1', '--coarse-only', action='store_true')
+    parser.add_argument('--silent', action='store_true',
+                    help="Silent mode. Suppress all logs.")
     parser.add_argument('input_file', action='store', nargs='?',
         help="Source code file (or directory) to generate object graph for. "
         "Use '-' to get source code from stdin. Ignore this argument to "
@@ -130,6 +132,11 @@ def main():
         create_logger("graph_logger", output_type="console",
             level=level)
         G.print = True
+    if args.silent:
+        # Disable all logging
+        logging.disable(logging.CRITICAL)
+        print("Logging is disabled due to silent mode.")
+        G.print = False
     G.run_all = args.run_all or args.module
     G.no_file_based = args.nfb
     G.two_pass = args.rcf
