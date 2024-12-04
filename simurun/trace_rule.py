@@ -20,7 +20,7 @@ class TraceRuleNew(TraceRuleInterface):
         func = self.graph.get_node_attr(node).get('funcid:int')
         if not func:
             while True:
-                print('goes to', node, self.graph.get_node_attr(node), self.graph.get_in_edges(node, edge_type='PARENT_OF'))
+                # print('goes to', node, self.graph.get_node_attr(node), self.graph.get_in_edges(node, edge_type='PARENT_OF'))
                 if self.graph.get_node_attr(node).get('type') in [
                         'AST_FUNC_DECL', 'AST_CLOSURE', 'AST_METHOD', 'AST_TOPLEVEL']:
                     func = node
@@ -455,5 +455,5 @@ class TraceRule(TraceRuleInterface):
             self.trace_rule = TraceRuleOld(key, value, G)
     
     def check(self, path):
-        print('checking path', path)
+        # print('checking path', path)
         return self.trace_rule.check(path)

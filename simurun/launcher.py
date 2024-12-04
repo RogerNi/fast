@@ -203,7 +203,7 @@ def main():
                 .format(sty.fg.li_cyan + ast_node + sty.rs.all,
                     G.get_node_file_path(ast_node),
                     G.get_node_line_code(ast_node)))
-        print(G.proto_pollution)
+        # print(G.proto_pollution)
 
     if G.ipt_use:
         logger.debug(sty.ef.inverse + 'internal property tampering' + sty.rs.all)
@@ -216,7 +216,7 @@ def main():
                     .format(sty.fg.li_cyan + ast_node + sty.rs.all,
                         G.get_node_file_path(ast_node),
                         G.get_node_line_code(ast_node)))
-            print(G.ipt_write)
+            # print(G.ipt_write)
             logger.debug('')
         logger.debug('Use:')
         for ast_node in G.ipt_use:
@@ -225,7 +225,7 @@ def main():
                 .format(sty.fg.li_cyan + ast_node + sty.rs.all,
                     G.get_node_file_path(ast_node),
                     G.get_node_line_code(ast_node)))
-        print(G.ipt_use)
+        # print(G.ipt_use)
 
     if G.vul_type not in ['proto_pollution', 'int_prop_tampering']:
         logger.debug(sty.ef.inverse + G.vul_type + sty.rs.all)
@@ -237,11 +237,11 @@ def main():
         logger.debug(res_path[1])
 
         res_pathes = vul_checking(G, res_path[0], G.vul_type)
-        print(res_pathes)
+        # print(res_pathes)
         for path in res_pathes:
             res_text_path = get_path_text(G, path, path[0])
-            print("Attack Path: ")
-            print(res_text_path)
+            # print("Attack Path: ")
+            # print(res_text_path)
 
         if len(res_pathes) != 0:
             with open('vul_func_names.csv', 'a') as fp:

@@ -72,7 +72,7 @@ def get_list_of_packages(path, start_id=None, size=None, use_cache=True):
         possible_packages = possible_packages[:size]
     
     all_packages = []
-    print("Preparing, path hash", path_hash)
+    # print("Preparing, path hash", path_hash)
     cnt = 0
     for package in tqdm(possible_packages):
         if not (os.path.isdir(package) or (os.path.isfile(package) and (
@@ -87,12 +87,12 @@ def get_list_of_packages(path, start_id=None, size=None, use_cache=True):
             all_packages.append(package)
         cnt += 1
         if cnt % 1000 == 0:
-            print('where the **** did you write?', f'all_packages_{path_hash}.json')
+            # print('where the **** did you write?', f'all_packages_{path_hash}.json')
             with open(f'all_packages_{path_hash}.json', 'w') as of:
                 json.dump({"path": path, "packages": all_packages}, of)
 
     
-    print('Prepared')
+    # print('Prepared')
     if use_cache and len(all_packages) > 100:
         with open(f'all_packages_{path_hash}.json', 'w') as of:
             json.dump({"path": path, "packages": all_packages}, of)
@@ -143,7 +143,7 @@ def get_entrance_files_of_package(package_path, get_all=False):
                 for key in package_json['bin']:
                     main_files.append(package_json['bin'][key])
 
-    print("path ", main_files)
+    # print("path ", main_files)
     # entrance file maybe two different formats
     # ./index = ./index.js or ./index = ./index/index.js
     if main_file[-3:] != ".js":
@@ -172,7 +172,7 @@ def get_entrance_files_of_package(package_path, get_all=False):
             entrance_files.append(main_file)
 
     main_file_pathes = ["{}/{}".format(package_path, main_file) for main_file in entrance_files]
-    print("Entrance Files ", main_file_pathes)
+    # print("Entrance Files ", main_file_pathes)
 
     return main_file_pathes
 
@@ -300,7 +300,7 @@ def test_file(file_path, vul_type='xss', graph=None):
     """
 
     global args
-    print("Testing {} {}".format(vul_type, file_path))
+    # print("Testing {} {}".format(vul_type, file_path))
     if file_path is None:
         npm_test_logger.error("{} not found".format(file_path))
         return -2, 0
@@ -427,7 +427,7 @@ def main():
             package_version_map[package] = package_version
 
     if args.package_list is not None:
-        print("Prepareing packages")
+        # print("Prepareing packages")
         _, file_ext = os.path.splitext(args.package_list)
 
         with open(args.package_list, 'r') as f:
@@ -521,8 +521,8 @@ def main():
                 './extracted_packages', package_name + '-' + vul_type))
             # tgz_extract_path = os.path.abspath(os.path.join('./extracted_packages', 
             #     hashlib.md5(package.encode('utf-8')).hexdigest()[:10] + '-' + vul_type))
-            print(package_name)
-            print(tgz_extract_path)
+            # print(package_name)
+            # print(tgz_extract_path)
             if not os.path.exists(tgz_extract_path):
                 os.mkdir(tgz_extract_path)
             subprocess.run(["tar", "-xzf", package, "-C", tgz_extract_path])
@@ -539,7 +539,7 @@ def main():
         except FunctionTimedOut:
             npm_res_logger.error("{} takes more than {} seconds".format(package, timeout))
             skip_list.append(package)
-            print('{} timed out'.format(package))
+            # print('{} timed out'.format(package))
             # end_time = time.time()
             # npm_run_time_logger.info("{}\t{}".format(package, end_time - start_time))
             # if tgz_extract_path is not None and os.path.exists(tgz_extract_path):

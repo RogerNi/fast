@@ -49,7 +49,7 @@ def check_string_operation(arr):
 
 def solve2(G: Graph, final_objs, initial_objs=None, contains=True):
     time1 = time.time()
-    print('final objs:', final_objs, 'value:', G.solve_from, 'initial objs:', initial_objs)
+    # print('final objs:', final_objs, 'value:', G.solve_from, 'initial objs:', initial_objs)
     solver = None
     symbols = None
     def symbol(obj):
@@ -229,7 +229,7 @@ def solve1(G: Graph, final_objs, initial_objs=None, contains=True):
             obj = q.pop(0)
             contributors = []
             in_edges = G.get_in_edges(obj, edge_type='CONTRIBUTES_TO')
-            print(in_edges)
+            # print(in_edges)
             for e in in_edges:
                 op = e[-1].get('op', '')
                 contributors.append((op, e[0]))

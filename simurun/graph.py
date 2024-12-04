@@ -192,18 +192,18 @@ class Graph:
         if self.last_timing_reset_time is None:
             self.last_timing_reset_time = time.time()
         elif time.time() - self.last_timing_reset_time > 2:
-            print(
-                sty.ef.inverse + sty.fg.yellow + 'Graph size' +
-                sty.rs.all + f' {self.graph.number_of_nodes()} {self.graph.number_of_edges()}'
-                + f' {time.time() - self.graph_start_time:.2f}s')
-            print( ' ' * 31 +
-                sty.ef.inverse + sty.fg.yellow + 'Cumulative' + sty.rs.all + '                   ' +
-                sty.ef.inverse + sty.fg.yellow + 'Recent' + sty.rs.all 
-                + f' {time.time() - self.last_timing_reset_time:.2f}s')
-            for k in sorted(self.graph_op_timing.keys()):
-                print(f'{k:30s} {self.graph_op_timing[k]:6.2f}s {self.graph_op_num_of_times[k]:7d}x avg.{int(self.graph_op_timing[k]/self.graph_op_num_of_times[k]*1e6):5d}us ' + 
-                        (f'{self.graph_op_timing_recent[k]:.2f}s {self.graph_op_num_of_times_recent[k]:6d}x avg.{int(self.graph_op_timing_recent[k]/self.graph_op_num_of_times_recent[k]*1e6):5d}us'
-                            if self.graph_op_num_of_times_recent[k] != 0  else ''))
+            # print(
+            #     sty.ef.inverse + sty.fg.yellow + 'Graph size' +
+            #     sty.rs.all + f' {self.graph.number_of_nodes()} {self.graph.number_of_edges()}'
+            #     + f' {time.time() - self.graph_start_time:.2f}s')
+            # print( ' ' * 31 +
+            #     sty.ef.inverse + sty.fg.yellow + 'Cumulative' + sty.rs.all + '                   ' +
+            #     sty.ef.inverse + sty.fg.yellow + 'Recent' + sty.rs.all 
+            #     + f' {time.time() - self.last_timing_reset_time:.2f}s')
+            # for k in sorted(self.graph_op_timing.keys()):
+            #     print(f'{k:30s} {self.graph_op_timing[k]:6.2f}s {self.graph_op_num_of_times[k]:7d}x avg.{int(self.graph_op_timing[k]/self.graph_op_num_of_times[k]*1e6):5d}us ' + 
+            #             (f'{self.graph_op_timing_recent[k]:.2f}s {self.graph_op_num_of_times_recent[k]:6d}x avg.{int(self.graph_op_timing_recent[k]/self.graph_op_num_of_times_recent[k]*1e6):5d}us'
+            #                 if self.graph_op_num_of_times_recent[k] != 0  else ''))
             self.last_timing_reset_time = time.time()
             self.graph_op_timing_recent.clear()
             self.graph_op_num_of_times_recent.clear()

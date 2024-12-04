@@ -3267,7 +3267,7 @@ def run_toplevel_file(G: Graph, node_id):
     if 'name' in G.get_node_attr(node_id):
         file_path = G.get_node_attr(node_id)['name']
     else:
-        print(node_id, G.get_node_attr(node_id))
+        # print(node_id, G.get_node_attr(node_id))
         return None
 
     # loop call
@@ -3275,7 +3275,7 @@ def run_toplevel_file(G: Graph, node_id):
         logger.info(sty.ef.b + '{} in the file stack, skipped.'.format(file_path) + sty.rs.all)
         return None
     G.file_stack.append(file_path)
-    print(G.file_stack)
+    # print(G.file_stack)
     previous_file_path = G.cur_file_path
     G.cur_file_path = file_path
     if G.entry_file_path is None:
@@ -3802,7 +3802,7 @@ def run_exported_functions(G, module_exports_objs, extra, file_path):
 
     if (G.two_pass and not G.first_pass and len(G.file_stack) > 1 and
             not G.no_file_based and file_path not in G.vul_files):
-        print(file_path, G.file_stack, 'exports skipped')
+        # print(file_path, G.file_stack, 'exports skipped')
         return
 
     G.file_stack.append(file_path)
@@ -5590,7 +5590,7 @@ def cfg_traverse(G: Graph, current, extra=ExtraInfo()):
     for e in G.get_out_edges(current, edge_type="FLOWS_TO"):
         next_nodes.append((G.get_node_attr(e[1]).get('local_dist', inf), e[1]))
     next_nodes.sort()
-    print('Current:', current, cur_type, 'Next nodes:', next_nodes)
+    # print('Current:', current, cur_type, 'Next nodes:', next_nodes)
     for dist, next_node in next_nodes:
         cfg_traverse(G, next_node, extra)
 
